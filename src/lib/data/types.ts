@@ -19,4 +19,9 @@ type FakeDbType = {
   messages: MessageType[];
 };
 
-export type { MessageType, ChatType, FakeDbType };
+type ChatStoreType = {
+  activeChat: ChatType | null;
+  activeMessages: MessageType[] | null;
+};
+
+export type { MessageType, ChatType, FakeDbType, ChatStoreType };

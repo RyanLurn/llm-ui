@@ -11,11 +11,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { observer, use$ } from "@legendapp/state/react";
+import { chatStore$ } from "@/lib/data/stores";
 
-export default function ChatItem({ chat }: { chat: ChatType }) {
+const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
+  const activeChatId = use$(chatStore$.activeChat.id);
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton>
+      <SidebarMenuButton
+        isActive={activeChatId === chat.id}
+        className="data-[active=true]:bg-sidebar-accent"
+        onClick={() => chatStore$.activeChat.set(chat)}
+      >
         <MessageSquare />
         <span>{chat.title}</span>
       </SidebarMenuButton>
@@ -36,4 +43,6 @@ export default function ChatItem({ chat }: { chat: ChatType }) {
       </DropdownMenu>
     </SidebarMenuItem>
   );
-}
+});
+
+export default ChatItem;
