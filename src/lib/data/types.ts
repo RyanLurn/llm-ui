@@ -24,4 +24,14 @@ type ChatStoreType = {
   activeMessages: MessageType[] | null;
 };
 
-export type { MessageType, ChatType, FakeDbType, ChatStoreType };
+type PromptStoreType = {
+  prompt: string;
+};
+
+export type {
+  MessageType,
+  ChatType,
+  FakeDbType,
+  ChatStoreType,
+  PromptStoreType,
+};

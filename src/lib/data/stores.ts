@@ -1,5 +1,5 @@
 import { observable } from "@legendapp/state";
-import { ChatStoreType, MessageType } from "./types";
+import { ChatStoreType, MessageType, PromptStoreType } from "./types";
 import { fakeDb } from "./fake-db";
 
 const chatStore$ = observable<ChatStoreType>({
@@ -16,4 +16,8 @@ const chatStore$ = observable<ChatStoreType>({
   },
 });
 
-export { chatStore$ };
+const promptStore$ = observable<PromptStoreType>({
+  prompt: "",
+});
+
+export { chatStore$, promptStore$ };

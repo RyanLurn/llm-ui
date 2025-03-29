@@ -9,7 +9,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Layout>
         <div className="h-full w-full overflow-y-auto">
-          <SidebarTrigger className="top-0 left-0" />
+          <SidebarTrigger className="sticky top-0 left-0" />
           <ChatContainer />
           <div className="fixed top-0 right-2">
             <ModeToggle />
