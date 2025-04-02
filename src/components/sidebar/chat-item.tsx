@@ -13,15 +13,23 @@ import {
 } from "../ui/dropdown-menu";
 import { observer, use$ } from "@legendapp/state/react";
 import { chatStore$ } from "@/lib/data/stores";
+import dexieDb from "@/lib/data/dexie-db";
 
 const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
   const activeChatId = use$(chatStore$.activeChat.id);
+  async function handleClick() {
+    chatStore$.activeChat.set(chat);
+    const messages = await dexieDb.messages
+      .where({ chatId: chat.id })
+      .toArray();
+    chatStore$.activeMessages.set(messages);
+  }
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
         isActive={activeChatId === chat.id}
         className="data-[active=true]:bg-sidebar-accent"
-        onClick={() => chatStore$.activeChat.set(chat)}
+        onClick={handleClick}
       >
         <MessageSquare />
         <span>{chat.title}</span>

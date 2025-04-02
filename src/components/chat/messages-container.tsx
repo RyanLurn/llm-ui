@@ -1,5 +1,5 @@
-import { observer, use$ } from "@legendapp/state/react";
 import Message from "./message";
+import { observer, use$ } from "@legendapp/state/react";
 import { chatStore$ } from "@/lib/data/stores";
 
 const MessagesContainer = observer(function MessagesContainer() {

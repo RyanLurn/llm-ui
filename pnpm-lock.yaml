@@ -29,12 +29,21 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.0.17
         version: 4.0.17(vite@6.2.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))
+      arktype:
+        specifier: ^2.1.16
+        version: 2.1.16
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      dexie:
+        specifier: ^4.0.11
+        version: 4.0.11
+      dexie-react-hooks:
+        specifier: ^1.1.7
+        version: 1.1.7(@types/react@19.0.12)(dexie@4.0.11)(react@19.1.0)
       lucide-react:
         specifier: ^0.485.0
         version: 0.485.0(react@19.1.0)
@@ -117,6 +126,12 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@ark/schema@0.45.6':
+    resolution: {integrity: sha512-uI/z6kAabOKeFxbJK2w26dD0FZLutL0LTw0o3EZsX+UC4exc34YUVkm7/wuUMvc5Z27IVDjoaZp9o7X4jOFAbg==}
+
+  '@ark/util@0.45.6':
+    resolution: {integrity: sha512-eI8Y1X0+271Q1p8qU39tkyrzIVMZIuymzixzVD0UL7k+HJaPhbbrjuKW/1CZzQ64tc+ugl7z2kP01YlAMA5h7A==}
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -1080,6 +1095,9 @@ packages:
     resolution: {integrity: sha512-y+CcFFwelSXpLZk/7fMB2mUbGtX9lKycf1MWJ7CaTIERyitVlyQx6C+sxcROU2BAJ24OiZyK+8wj2i8AlBoS3A==}
     engines: {node: '>=10'}
 
+  arktype@2.1.16:
+    resolution: {integrity: sha512-KEuoEtpmbNVAIZqyLE+ox4Ga/6ED7Oe3Ra90sxGe4ZnufLz8AH49Xqis0i6oNEq23KmpduRLZRfS+iTAkjnfDw==}
+
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
 
@@ -1190,6 +1208,16 @@ packages:
 
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
+
+  dexie-react-hooks@1.1.7:
+    resolution: {integrity: sha512-Lwv5W0Hk+uOW3kGnsU9GZoR1er1B7WQ5DSdonoNG+focTNeJbHW6vi6nBoX534VKI3/uwHebYzSw1fwY6a7mTw==}
+    peerDependencies:
+      '@types/react': '>=16'
+      dexie: ^3.2 || ^4.0.1-alpha
+      react: '>=16'
+
+  dexie@4.0.11:
+    resolution: {integrity: sha512-SOKO002EqlvBYYKQSew3iymBoN2EQ4BDw/3yprjh7kAfFzjBYkaMNa/pZvcA7HSWlcKSQb9XhPe3wKyQ0x4A8A==}
 
   electron-to-chromium@1.5.128:
     resolution: {integrity: sha512-bo1A4HH/NS522Ws0QNFIzyPcyUUNV/yyy70Ho1xqfGYzPUme2F/xr4tlEOuM6/A538U1vDA7a4XfCd1CKRegKQ==}
@@ -2118,6 +2146,12 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@ark/schema@0.45.6':
+    dependencies:
+      '@ark/util': 0.45.6
+
+  '@ark/util@0.45.6': {}
+
   '@babel/code-frame@7.26.2':
     dependencies:
       '@babel/helper-validator-identifier': 7.25.9
@@ -3005,6 +3039,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  arktype@2.1.16:
+    dependencies:
+      '@ark/schema': 0.45.6
+      '@ark/util': 0.45.6
+
   bail@2.0.2: {}
 
   balanced-match@1.0.2: {}
@@ -3095,6 +3134,14 @@ snapshots:
   devlop@1.1.0:
     dependencies:
       dequal: 2.0.3
+
+  dexie-react-hooks@1.1.7(@types/react@19.0.12)(dexie@4.0.11)(react@19.1.0):
+    dependencies:
+      '@types/react': 19.0.12
+      dexie: 4.0.11
+      react: 19.1.0
+
+  dexie@4.0.11: {}
 
   electron-to-chromium@1.5.128: {}
 

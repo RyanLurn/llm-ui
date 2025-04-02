@@ -1,4 +1,3 @@
-import { fakeDb } from "@/lib/data/fake-db";
 import {
   SidebarGroup,
   SidebarGroupAction,
@@ -8,8 +7,11 @@ import {
 } from "../ui/sidebar";
 import ChatItem from "./chat-item";
 import { Plus } from "lucide-react";
+import { useLiveQuery } from "dexie-react-hooks";
+import dexieDb from "@/lib/data/dexie-db";
 
 export default function ChatHistory() {
+  const chats = useLiveQuery(() => dexieDb.chats.toArray());
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Chat History</SidebarGroupLabel>
@@ -18,9 +20,7 @@ export default function ChatHistory() {
       </SidebarGroupAction>
       <SidebarGroupContent>
         <SidebarMenu>
-          {fakeDb.chats.map((chat) => (
-            <ChatItem key={chat.id} chat={chat} />
-          ))}
+          {chats?.map((chat) => <ChatItem key={chat.id} chat={chat} />)}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
