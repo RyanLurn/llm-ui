@@ -28,10 +28,41 @@ type PromptStoreType = {
   prompt: string;
 };
 
+type AiResponseLogType = {
+  id: string;
+  input: {
+    modelName: string;
+    system: string;
+    messages: MessageType[];
+  };
+  output: {
+    text: string;
+    usage: {
+      promptTokens: number;
+      completionTokens: number;
+      totalTokens: number;
+    };
+  };
+  createdAt: string;
+};
+
+type AiErrorLogType = {
+  id: string;
+  input: {
+    modelName: string;
+    system: string;
+    messages: MessageType[];
+  };
+  error: string;
+  createdAt: string;
+};
+
 export type {
   MessageType,
   ChatType,
   FakeDbType,
   ChatStoreType,
   PromptStoreType,
+  AiResponseLogType,
+  AiErrorLogType,
 };

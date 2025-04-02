@@ -9,7 +9,7 @@ function createNewMessage({
 }: {
   role: "user" | "assistant";
   content: string;
-  name?: string;
+  name: string;
   activeChatId: string;
 }): MessageType {
   const newMessage: MessageType = {

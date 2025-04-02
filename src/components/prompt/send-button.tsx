@@ -4,6 +4,7 @@ import { Send } from "lucide-react";
 import { use$ } from "@legendapp/state/react";
 import { createNewChat, createNewMessage } from "@/lib/data/create-new";
 import dexieDb from "@/lib/data/dexie-db";
+import { getResponse } from "@/lib/ai/get-response";
 
 function SendButton() {
   const prompt = use$(promptStore$.prompt);
@@ -23,15 +24,22 @@ function SendButton() {
       const newUserMessage = createNewMessage({
         role: "user",
         content: prompt,
+        name: "Human",
         activeChatId: chatId,
       });
       await dexieDb.messages.add(newUserMessage);
       chatStore$.activeMessages.push(newUserMessage);
       promptStore$.prompt.set("");
 
+      const aiResponse = await getResponse({
+        modelName: "Gemini 2.0 Flash",
+        system: "You are a silly robot",
+        messages: chatStore$.activeMessages.get()!,
+      });
       const newAssistantMessage = createNewMessage({
         role: "assistant",
-        content: `You said: ${newUserMessage.content}`,
+        content: aiResponse,
+        name: "Silly Bot",
         activeChatId: chatId,
       });
       await dexieDb.messages.add(newAssistantMessage);

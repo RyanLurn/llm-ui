@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ai-sdk/google": "^1.2.5",
     "@legendapp/state": "3.0.0-beta.30",
     "@radix-ui/react-context-menu": "^2.2.6",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -20,6 +21,7 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@tailwindcss/vite": "^4.0.17",
+    "ai": "^4.2.10",
     "arktype": "^2.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
