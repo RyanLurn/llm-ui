@@ -22,7 +22,7 @@ function MessageContent({ id, content }: { id: string; content: string }) {
   return (
     <ContextMenu>
       <ContextMenuTrigger>
-        <div className="prose max-w-full prose-zinc dark:prose-invert">
+        <div className="prose max-w-none break-all prose-zinc dark:prose-invert">
           <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
         </div>
       </ContextMenuTrigger>
