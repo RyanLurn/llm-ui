@@ -26,11 +26,6 @@ async function getResponse({
       output: { text, usage },
       createdAt: new Date().toISOString(),
     };
-    console.log(modelName);
-    console.log(system);
-    console.log(messages);
-    console.log(text);
-    console.log(usage);
     await dexieDb.aiResponseLogs.add(responseLog);
     console.log(responseLog);
     return text;
