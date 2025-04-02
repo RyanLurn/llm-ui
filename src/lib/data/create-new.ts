@@ -24,10 +24,10 @@ function createNewMessage({
   return newMessage;
 }
 
-function createNewChat(): ChatType {
+function createNewChat(newTitle: string): ChatType {
   const newChat: ChatType = {
     id: uuidv7(),
-    title: "New Chat",
+    title: newTitle,
     createdAt: new Date().toISOString(),
     lastOpenedAt: new Date().toISOString(),
   };

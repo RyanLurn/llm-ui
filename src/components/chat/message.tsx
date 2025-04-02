@@ -9,7 +9,7 @@ export default function Message({ message }: { message: MessageType }) {
       <Button size="icon">
         {message.role === "user" ? <User /> : <Bot />}
       </Button>
-      <div className="flex flex-1 flex-col gap-y-2">
+      <div className="flex w-full flex-1 flex-col gap-y-2">
         <span className="text-lg font-bold">
           {message.name ?? (message.role === "user" ? "You" : "AI")}
         </span>

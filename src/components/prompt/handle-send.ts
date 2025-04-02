@@ -2,6 +2,8 @@ import { chatStore$, promptStore$ } from "@/lib/data/stores";
 import { createNewChat, createNewMessage } from "@/lib/data/create-new";
 import dexieDb from "@/lib/data/dexie-db";
 import { getResponse } from "@/lib/ai/get-response";
+import { getTitle } from "@/lib/ai/get-title";
+import sillyBotSystemPrompt from "@/lib/ai/prompts/silly-bot.md?raw";
 
 async function handleSend() {
   const prompt = promptStore$.prompt.get();
@@ -10,7 +12,8 @@ async function handleSend() {
   if (prompt) {
     let chatId: string;
     if (!activeChat) {
-      const newChat = createNewChat();
+      const newChatTitle = await getTitle(prompt);
+      const newChat = createNewChat(newChatTitle);
       await dexieDb.chats.add(newChat);
       chatStore$.activeChat.set(newChat);
       chatId = newChat.id;
@@ -30,7 +33,7 @@ async function handleSend() {
 
     const aiResponse = await getResponse({
       modelName: "Gemini 2.0 Flash",
-      system: "You are a silly robot",
+      system: sillyBotSystemPrompt,
       messages: chatStore$.activeMessages.get()!,
     });
     const newAssistantMessage = createNewMessage({
