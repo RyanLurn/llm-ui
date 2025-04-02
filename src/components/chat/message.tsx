@@ -1,8 +1,7 @@
 import { MessageType } from "@/lib/data/types";
 import { Button } from "../ui/button";
 import { Bot, User } from "lucide-react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MessageContent from "./message-content";
 
 export default function Message({ message }: { message: MessageType }) {
   return (
@@ -14,9 +13,7 @@ export default function Message({ message }: { message: MessageType }) {
         <span className="text-lg font-bold">
           {message.name ?? (message.role === "user" ? "You" : "AI")}
         </span>
-        <div className="prose max-w-none prose-zinc dark:prose-invert">
-          <Markdown remarkPlugins={[remarkGfm]}>{message.content}</Markdown>
-        </div>
+        <MessageContent id={message.id} content={message.content} />
       </div>
     </div>
   );
