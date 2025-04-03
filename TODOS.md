@@ -23,7 +23,7 @@
 - [x] **Saving Chats:** Automatically or manually save conversations for later retrieval.
 - [x] **Loading Chats:** Select and reopen a past conversation from the history.
 - [ ] **Renaming Chats:** Ability to give meaningful names to conversations (manual edit or automatically generated based on the first prompt).
-- [ ] **Deleting Chats:** Option to remove conversations from the history.
+- [x] **Deleting Chats:** Option to remove conversations from the history.
 - [ ] **Searching Chats:** Ability to search through past conversation titles or content.
 - [ ] **Pinning Chats:** Option to pin important chats to the top of the history list.
 

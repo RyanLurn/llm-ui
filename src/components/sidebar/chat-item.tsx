@@ -17,6 +17,7 @@ import dexieDb from "@/lib/data/dexie-db";
 
 const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
   const activeChatId = use$(chatStore$.activeChat.id);
+
   async function handleClick() {
     chatStore$.activeChat.set(chat);
     const messages = await dexieDb.messages
@@ -24,6 +25,16 @@ const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
       .toArray();
     chatStore$.activeMessages.set(messages);
   }
+
+  async function deleteChat() {
+    if (activeChatId === chat.id) {
+      chatStore$.activeChat.set(null);
+      chatStore$.activeMessages.set(null);
+    }
+    await dexieDb.chats.delete(chat.id);
+    await dexieDb.messages.where({ chatId: chat.id }).delete();
+  }
+
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
@@ -36,7 +47,7 @@ const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
       </SidebarMenuButton>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <SidebarMenuAction>
+          <SidebarMenuAction className="hover:peer-data-[active=true]/menu-button:bg-sidebar">
             <MoreHorizontal />
           </SidebarMenuAction>
         </DropdownMenuTrigger>
@@ -44,7 +55,7 @@ const ChatItem = observer(function ChatItem({ chat }: { chat: ChatType }) {
           <DropdownMenuItem>
             <span>Edit</span>
           </DropdownMenuItem>
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem onClick={deleteChat} variant="destructive">
             <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
