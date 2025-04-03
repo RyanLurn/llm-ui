@@ -16,10 +16,12 @@ const chatStore$ = observable<ChatStoreType>({
 
 type PromptStoreType = {
   prompt: string;
+  attachedFiles: FileList | null;
 };
 
 const promptStore$ = observable<PromptStoreType>({
   prompt: "",
+  attachedFiles: null,
 });
 
 type aiGenerationState = {

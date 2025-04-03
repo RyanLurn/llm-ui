@@ -2,8 +2,10 @@ import { aiGenerationState$, promptStore$ } from "@/lib/data/stores";
 import { $React } from "@legendapp/state/react-web";
 import SendButton from "./send-button";
 import { handleSend } from "./handle-send";
-import { use$ } from "@legendapp/state/react";
+import { For, use$ } from "@legendapp/state/react";
 import ModelSelection from "./model-selection";
+import FileUpload from "./file-upload";
+import FileItem from "./file-item";
 
 function PromptContainer() {
   const isGenerating = use$(aiGenerationState$.isGenerating);
@@ -24,9 +26,19 @@ function PromptContainer() {
         $disabled={aiGenerationState$.isGenerating}
       />
       <div className="flex w-full justify-between">
-        <ModelSelection />
-        <SendButton />
+        <FileUpload />
+        <div className="flex gap-x-2">
+          <ModelSelection />
+          <SendButton />
+        </div>
       </div>
+      {promptStore$.attachedFiles && (
+        <div className="flex gap-x-2">
+          {promptStore$.attachedFiles
+            .get()
+            ?.map((file: File) => <FileItem key={file.name} file={file} />)}
+        </div>
+      )}
     </div>
   );
 }
