@@ -19,15 +19,6 @@ type FakeDbType = {
   messages: MessageType[];
 };
 
-type ChatStoreType = {
-  activeChat: ChatType | null;
-  activeMessages: MessageType[] | null;
-};
-
-type PromptStoreType = {
-  prompt: string;
-};
-
 type AiResponseLogType = {
   id: string;
   input: {
@@ -61,8 +52,6 @@ export type {
   MessageType,
   ChatType,
   FakeDbType,
-  ChatStoreType,
-  PromptStoreType,
   AiResponseLogType,
   AiErrorLogType,
 };

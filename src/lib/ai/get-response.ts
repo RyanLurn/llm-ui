@@ -44,4 +44,3 @@ async function getResponse({
 }
 
 export { getResponse };
-//TypeError: Cannot read properties of undefined (reading 'add')

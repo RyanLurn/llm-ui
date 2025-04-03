@@ -1,4 +1,9 @@
-import { chatStore$, promptStore$ } from "@/lib/data/stores";
+import {
+  aiGenerationState$,
+  chatStore$,
+  promptStore$,
+  titleGenerationState$,
+} from "@/lib/data/stores";
 import { createNewChat, createNewMessage } from "@/lib/data/create-new";
 import dexieDb from "@/lib/data/dexie-db";
 import { getResponse } from "@/lib/ai/get-response";
@@ -12,10 +17,12 @@ async function handleSend() {
   if (prompt) {
     let chatId: string;
     if (!activeChat) {
+      titleGenerationState$.isGenerating.set(true);
       const newChatTitle = await getTitle(prompt);
       const newChat = createNewChat(newChatTitle);
       await dexieDb.chats.add(newChat);
       chatStore$.activeChat.set(newChat);
+      titleGenerationState$.isGenerating.set(false);
       chatId = newChat.id;
     } else {
       chatId = activeChat.id;
@@ -27,10 +34,11 @@ async function handleSend() {
       name: "Human",
       activeChatId: chatId,
     });
+    promptStore$.prompt.set("");
     await dexieDb.messages.add(newUserMessage);
     chatStore$.activeMessages.push(newUserMessage);
-    promptStore$.prompt.set("");
 
+    aiGenerationState$.isGenerating.set(true);
     const aiResponse = await getResponse({
       modelName: "Gemini 2.0 Flash",
       system: sillyBotSystemPrompt,
@@ -44,6 +52,7 @@ async function handleSend() {
     });
     await dexieDb.messages.add(newAssistantMessage);
     chatStore$.activeMessages.push(newAssistantMessage);
+    aiGenerationState$.isGenerating.set(false);
   }
 }
 

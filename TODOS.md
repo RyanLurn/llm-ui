@@ -5,12 +5,12 @@
 - [ ] **Regenerate Response:** A button to ask the AI to try generating a different response to the _last_ user prompt.
 - [ ] **Edit User Prompts:** Allow users to edit their previous messages and regenerate the AI's response based on the edited prompt.
 - [ ] **Clear User/AI Distinction:** Visually differentiate user messages from AI responses (e.g., different background colors, alignment, icons/avatars).
-- [ ] **Loading Indicator:** Show a visual cue while waiting for the AI response.
-- [ ] **Error Handling:** Display user-friendly messages for API errors, network issues, rate limits, content filtering, etc.
-- [ ] **Input Area:**
+- [x] **Loading Indicator:** Show a visual cue while waiting for the AI response.
+- [x] **Error Handling:** Display user-friendly messages for API errors, network issues, rate limits, content filtering, etc.
+- [x] **Input Area:**
   - [x] Text area that automatically resizes with input.
   - [x] Send button (and potentially Shift+Enter for newline, Enter to send).
-  - [ ] Clear indication when input is disabled (e.g., while AI is responding).
+  - [x] Clear indication when input is disabled (e.g., while AI is responding).
 - [ ] **Copy Message:** A button to easily copy the content of a specific AI response (or user prompt).
 - [ ] **Code Block Handling:**
   - [ ] Proper syntax highlighting for various programming languages within code blocks.
