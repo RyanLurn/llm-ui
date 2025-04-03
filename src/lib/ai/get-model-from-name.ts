@@ -1,15 +1,14 @@
-import { geminiFlash, geminiPro, gemma } from "./gemini-models";
+import { LanguageModel } from "ai";
+import { supportedModels } from "./supported-models";
 
-function getModelFromName(name: string) {
+function getModelFromName(name: string): LanguageModel {
   switch (name) {
-    case "Gemma 3 27B":
-      return gemma;
-    case "Gemini 2.0 Flash":
-      return geminiFlash;
-    case "Gemini 2.5 Pro":
-      return geminiPro;
+    case supportedModels.google.geminiFlash.name:
+      return supportedModels.google.geminiFlash.instance;
+    case supportedModels.google.geminiPro.name:
+      return supportedModels.google.geminiPro.instance;
     default:
-      return gemma;
+      return supportedModels.default.instance;
   }
 }
 

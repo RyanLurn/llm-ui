@@ -40,7 +40,6 @@ async function handleSend() {
 
     aiGenerationState$.isGenerating.set(true);
     const aiResponse = await getResponse({
-      modelName: "Gemini 2.0 Flash",
       system: sillyBotSystemPrompt,
       messages: chatStore$.activeMessages.get()!,
     });

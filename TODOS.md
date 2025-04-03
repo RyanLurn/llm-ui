@@ -36,7 +36,7 @@
 
 **IV. Model Interaction & Configuration (May require backend changes)**
 
-- [ ] **Model Selection:** If your backend supports multiple models, allow users to choose which one to interact with.
+- [x] **Model Selection:** If your backend supports multiple models, allow users to choose which one to interact with.
 - [ ] **System Prompt / Custom Instructions:** Allow users to set a persistent instruction or persona for the AI within a specific chat or globally.
 - [ ] **Parameter Adjustment (Advanced):** Expose controls for things like Temperature or Top P (often hidden or for advanced users).
 - [ ] **Token Count Display:** Show the number of tokens used in a prompt/response (useful for debugging or cost awareness).

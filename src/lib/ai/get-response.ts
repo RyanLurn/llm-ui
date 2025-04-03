@@ -2,18 +2,17 @@ import { generateText, LanguageModel } from "ai";
 import { AiErrorLogType, AiResponseLogType, MessageType } from "../data/types";
 import dexieDb from "../data/dexie-db";
 import { v7 as uuidv7 } from "uuid";
-import { getModelFromName } from "./get-model-from-name";
+import { selectedModel$ } from "../data/stores";
 
 async function getResponse({
-  modelName,
   system,
   messages,
 }: {
-  modelName: string;
   system: string;
   messages: MessageType[];
 }) {
-  const model: LanguageModel = getModelFromName(modelName);
+  const model: LanguageModel = selectedModel$.instance.get();
+  const modelName = selectedModel$.name.get();
   try {
     const { text, usage } = await generateText({
       model,

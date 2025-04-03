@@ -1,9 +1,9 @@
 import { aiGenerationState$, promptStore$ } from "@/lib/data/stores";
 import { $React } from "@legendapp/state/react-web";
-import { Button } from "../ui/button";
 import SendButton from "./send-button";
 import { handleSend } from "./handle-send";
 import { use$ } from "@legendapp/state/react";
+import ModelSelection from "./model-selection";
 
 function PromptContainer() {
   const isGenerating = use$(aiGenerationState$.isGenerating);
@@ -24,7 +24,7 @@ function PromptContainer() {
         $disabled={aiGenerationState$.isGenerating}
       />
       <div className="flex w-full justify-between">
-        <Button>Gemini 2.5 Pro</Button>
+        <ModelSelection />
         <SendButton />
       </div>
     </div>
