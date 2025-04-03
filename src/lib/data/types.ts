@@ -48,10 +48,21 @@ type AiErrorLogType = {
   createdAt: string;
 };
 
+type FileType = {
+  id: string;
+  name: string;
+  size: number;
+  mimeType: string;
+  file: File;
+  uploadedAt: string;
+  messageId: string;
+};
+
 export type {
   MessageType,
   ChatType,
   FakeDbType,
   AiResponseLogType,
   AiErrorLogType,
+  FileType,
 };

@@ -2,10 +2,10 @@ import { aiGenerationState$, promptStore$ } from "@/lib/data/stores";
 import { $React } from "@legendapp/state/react-web";
 import SendButton from "./send-button";
 import { handleSend } from "./handle-send";
-import { For, use$ } from "@legendapp/state/react";
+import { use$ } from "@legendapp/state/react";
 import ModelSelection from "./model-selection";
 import FileUpload from "./file-upload";
-import FileItem from "./file-item";
+import FilesDisplay from "./files-display";
 
 function PromptContainer() {
   const isGenerating = use$(aiGenerationState$.isGenerating);
@@ -32,13 +32,7 @@ function PromptContainer() {
           <SendButton />
         </div>
       </div>
-      {promptStore$.attachedFiles && (
-        <div className="flex gap-x-2">
-          {promptStore$.attachedFiles
-            .get()
-            ?.map((file: File) => <FileItem key={file.name} file={file} />)}
-        </div>
-      )}
+      <FilesDisplay />
     </div>
   );
 }
